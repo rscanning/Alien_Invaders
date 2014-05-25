@@ -132,6 +132,7 @@ var GameBoard = function GameBoard(level_number) {
   };
 
   this.loadLevel = function(level) {
+      
     this.objects = [];
     this.player = this.addSprite('player', // Sprite
                                  Game.width/2, // X
