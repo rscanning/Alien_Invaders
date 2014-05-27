@@ -87,10 +87,11 @@ Alien.prototype.fireSometimes = function() {
 
 var Player = function Player(opts) { 
   this.reloading = 0;
+  this.frame = 0;
 }
 
 Player.prototype.draw = function(canvas) {
-   Sprites.draw(canvas,'player',this.x,this.y);
+   Sprites.draw(canvas,'player',this.x,this.y,this.frame);
 }
 
 
@@ -108,7 +109,7 @@ Player.prototype.step = function(dt) {
 
   if(this.x < 0) this.x = 0;
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
-
+   this.frame = (this.frame+1) % 3;
   this.reloading--;
 
   if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 3) {
@@ -122,7 +123,6 @@ Player.prototype.step = function(dt) {
   }
   return true;
 }
-
 
 var Missile = function Missile(opts) {
    this.dy = opts.dy;
